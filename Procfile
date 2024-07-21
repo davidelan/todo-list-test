@@ -1,1 +1,1 @@
-web: gunicorn codestar.wsgi
+web: gunicorn todo_list_creator.wsgi
