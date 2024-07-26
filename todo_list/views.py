@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from django.urls import reverse_lazy
 
@@ -36,3 +36,9 @@ class TaskCreate(CreateView):
     model = Task
     fields = "__all__"
     success_urs = reverse_lazy('task')
+
+
+class TaskUpdate(UpdateView):
+    model = Task
+    fields = ['title', 'description', 'complete']
+    success_url = reverse_lazy('task')
