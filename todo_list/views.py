@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
-from .models import Todo_list, Task
+from .models import Task
 
 # Create your views here.
 
 class TaskList(ListView):
     model = Task
-
-    # context_object_name = 'task'
+    context_object_name = 'task'
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -21,3 +21,9 @@ class TaskList(ListView):
     #         context['task'] = context['task'].filter(title__icontains = search_input)
     #         context['search_input'] = search_input
     #     return context
+
+
+class TaskDetail(DetailView):
+    model = Task
+    context_object_name = 'task'
+    template_name = "todo_list/task.html"
