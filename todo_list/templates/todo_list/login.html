@@ -1,6 +1,7 @@
-<h1>LOGIN</h1>
+<h1>Login</h1>
 <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_p}}
-    <input type="submit" value="Login Now">
+    {{ form.as_p }}
+    <input class="button" type="submit" value="Login Now">
+    <small><p>Don't have an account yet? <a href="{% url 'register' %}">Register new account</a></p></small>
 </form>
