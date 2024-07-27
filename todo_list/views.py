@@ -16,16 +16,19 @@ class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'task'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['task'] = context['task'].filter(user=self.request.user)
-    #     context['count'] = context['task'].filter(complete=False).count()
+    ### Context data to prevent user to access other users data
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['task'] = context['task'].filter(author=self.request.user)
+
+        ### Incomplete tasks count
+        context['count'] = context['task'].filter(complete=False).count()
 
     #     search_input = self.request.GET.get('search-area') or ''
     #     if search_input:
     #         context['task'] = context['task'].filter(title__icontains = search_input)
     #         context['search_input'] = search_input
-    #     return context
+        return context
 
 
 class TaskDetail(LoginRequiredMixin, DetailView):
@@ -36,8 +39,12 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = "__all__"
-    success_urs = reverse_lazy('task')
+    fields = ['title', 'description', 'complete']
+    success_url = reverse_lazy('task')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreate, self).form_valid(form)
 
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
