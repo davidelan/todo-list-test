@@ -42,8 +42,8 @@ class Task(models.Model):
         updated_at (DateTimeField): Timestamp when the todo_list was last
         updated.
     """
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    title = models.CharField(max_length=200, unique=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True, blank=True)
     complete = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -51,7 +51,7 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     class Meta:
         ordering = ['complete']
 
