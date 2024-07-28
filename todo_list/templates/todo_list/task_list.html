@@ -2,8 +2,6 @@
 
 {% block content %}
 
-<h1>My Todo List</h1>
-
 <div class="header-bar">
     <div>
         <h1>Hello {{ request.user|title }}</h1>
@@ -15,8 +13,6 @@
         <a href="{% url 'login' %}">Login</a>
     {% endif %}
 </div>
-
-<hr>
 
 
 
