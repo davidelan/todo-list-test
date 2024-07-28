@@ -25,10 +25,11 @@ class TaskList(LoginRequiredMixin, ListView):
         ### Incomplete tasks count
         context['count'] = context['task'].filter(complete=False).count()
 
-    #     search_input = self.request.GET.get('search-area') or ''
-    #     if search_input:
-    #         context['task'] = context['task'].filter(title__icontains = search_input)
-    #         context['search_input'] = search_input
+        ### search capability for tasks
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['task'] = context['task'].filter(title__icontains = search_input)
+            context['search_input'] = search_input
         return context
 
 
@@ -81,6 +82,7 @@ class RegisterPage(FormView):
             login(self.request, user)
         return super(RegisterPage, self).form_valid(form)
 
+    ### in order to go back to task if trying to load register page
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect('task')
