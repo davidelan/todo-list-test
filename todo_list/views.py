@@ -31,7 +31,7 @@ class TodoList(LoginRequiredMixin, generic.ListView):
     :template:`blog/index.html`
     """
 
-    queryset = Todo_list.objects.all()
+    queryset = Todo_list.objects.all().order_by("created_on")
     template_name = "todo_list/post_list.html"
     # paginate_by = 6
 
