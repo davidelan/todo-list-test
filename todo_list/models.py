@@ -10,7 +10,7 @@ class Todo_list(models.Model):
 
     Attributes:
         todo_list_id (CharField): Unique identifier for the todo_list.
-        list_name (CharField): Name of the todo_list.
+        slug (CharField): Name of the todo_list.
         due_date (DateField): Due date for the todo_list.
         description (TextField): Description of the todo_list.
         created_by (ForeignKey): User who created the todo_list.
