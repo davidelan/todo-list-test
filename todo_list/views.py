@@ -10,9 +10,31 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from .models import Todo_list
 from .models import Task
 
 # Create your views here.
+
+# class Todo_list_List(generic.ListView):
+#     """
+#     Returns all published posts in :model:`blog.Post`
+#     and displays them in a page of six posts.
+#     **Context**
+
+#     ``queryset``
+#         All published instances of :model:`blog.Post`
+#     ``paginate_by``
+#         Number of posts per page.
+
+#     **Template:**
+
+#     :template:`blog/index.html`
+#     """
+#     queryset = Post.objects.filter(status=1)
+#     template_name = "blog/index.html"
+#     paginate_by = 6
+
+
 
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
