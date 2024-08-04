@@ -8,6 +8,7 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     #path('', views.TaskList.as_view(), name='home'),
     path('', views.TodoList.as_view(), name='home'),
+    path('<slug:slug>/', views.post_detail, name='post_detail'),
     #path('', TodoList.as_view(), name="todo-list"),
     #path('', TaskList.as_view(), name="task"),
     path('task-create/', TaskCreate.as_view(), name="task-create"),

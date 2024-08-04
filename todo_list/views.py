@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 #from django.http import HttpResponse
 from django.views import generic
 from django.views.generic.list import ListView
@@ -35,6 +35,29 @@ class TodoList(LoginRequiredMixin, generic.ListView):
     #template_name = "todo_list/post_list.html"
     template_name = "todo_list/index.html"
     # paginate_by = 6
+
+def post_detail(request, slug):
+    """
+    Display an individual :model:`blog.Post`.
+
+    **Context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+
+    **Template:**
+
+    :template:`blog/post_detail.html`
+    """
+
+    queryset = Todo_list.objects.all()
+    post = get_object_or_404(queryset, slug=slug)
+
+    return render(
+        request,
+        "todo_list/post_detail.html",
+        {"post": post},
+    )
 
 
 
