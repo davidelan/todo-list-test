@@ -32,7 +32,8 @@ class TodoList(LoginRequiredMixin, generic.ListView):
     """
 
     queryset = Todo_list.objects.all().order_by("created_on")
-    template_name = "todo_list/post_list.html"
+    #template_name = "todo_list/post_list.html"
+    template_name = "todo_list/index.html"
     # paginate_by = 6
 
 
@@ -55,6 +56,8 @@ class TaskList(LoginRequiredMixin, ListView):
             context['task'] = context['task'].filter(title__icontains = search_input)
             context['search_input'] = search_input
         return context
+    
+    queryset = Task.objects.all().order_by("created_on")
 
 
 class TaskDetail(LoginRequiredMixin, DetailView):
